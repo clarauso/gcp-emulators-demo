@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "52d51385-03d2-4acb-8018-79a44efb698e",
+		"name": "gcp-emulators",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5768863"
+	},
+	"item": [
+		{
+			"name": "Pub/Sub",
+			"item": [
+				{
+					"name": "topic create",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{pubsub-port}}/v1/projects/{{project-id}}/topics/{{topic}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{pubsub-port}}",
+							"path": [
+								"v1",
+								"projects",
+								"{{project-id}}",
+								"topics",
+								"{{topic}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subscription create (pull)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\": \"projects/{{project-id}}/topics/{{topic}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{pubsub-port}}/v1/projects/{{project-id}}/subscriptions/{{subscription}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{pubsub-port}}",
+							"path": [
+								"v1",
+								"projects",
+								"{{project-id}}",
+								"subscriptions",
+								"{{subscription}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "topic publish",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const requestBody = JSON.parse(pm.request.body.raw);",
+									"",
+									"// base64 enconding of \"data\" field, needed by PubSub",
+									"requestBody.messages.forEach(function(message) {",
+									"    message.data = toBase64(message.data);",
+									"});",
+									"",
+									"pm.request.body.raw = JSON.stringify(requestBody);",
+									"",
+									"// UTILS",
+									"",
+									"function toBase64(input) {",
+									"    const base64Hash = CryptoJS.enc.Utf8.parse(input);",
+									"    return CryptoJS.enc.Base64.stringify(base64Hash);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"connection": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"messages\": [\n        {\n            \"attributes\": {\n                \"tenantId\": \"it-tenant\",\n                \"applicationId\": \"demo-app\"\n            },\n            \"data\": \"{\\\"key\\\": \\\"value\\\"}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{pubsub-port}}/v1/projects/{{project-id}}/topics/{{topic}}:publish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{pubsub-port}}",
+							"path": [
+								"v1",
+								"projects",
+								"{{project-id}}",
+								"topics",
+								"{{topic}}:publish"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "project-id",
+			"value": "local-project"
+		},
+		{
+			"key": "topic",
+			"value": "test-topic"
+		},
+		{
+			"key": "pubsub-port",
+			"value": "8085"
+		},
+		{
+			"key": "subscription",
+			"value": "test-sub"
+		}
+	]
+}

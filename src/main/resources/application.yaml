@@ -1,0 +1,12 @@
+# spring properties
+spring:
+  cloud:
+    gcp:
+      pubsub:
+        project-id: local-project
+        emulator-host: localhost:8085
+
+# custom properties
+config:
+  pubsub:
+    test-subscription: test-sub
