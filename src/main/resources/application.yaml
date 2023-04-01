@@ -1,12 +1,20 @@
+# server properties
+server:
+  servlet:
+    context-path: /demo
+
 # spring properties
 spring:
   cloud:
     gcp:
+      project-id: local-project
       pubsub:
-        project-id: local-project
         emulator-host: localhost:8085
 
 # custom properties
 config:
   pubsub:
     test-subscription: test-sub
+  storage:
+    emulator-host: localhost:9199 # gcp starter does not have this property
+    default-bucket: local-project.appspot.com
