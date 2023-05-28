@@ -3,7 +3,7 @@ package com.clarauso.demo.controller;
 import com.clarauso.demo.model.business.StorageObject;
 import com.clarauso.demo.model.exceptions.NotFoundException;
 import com.clarauso.demo.model.dto.ResourceReference;
-import com.clarauso.demo.storage.StorageService;
+import com.clarauso.demo.service.StorageService;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

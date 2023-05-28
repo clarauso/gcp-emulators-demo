@@ -1,5 +1,6 @@
-package com.clarauso.demo.firestore;
+package com.clarauso.demo.service;
 
+import com.clarauso.demo.firestore.UserRepository;
 import com.clarauso.demo.model.exceptions.InvalidInputException;
 import com.clarauso.demo.model.business.User;
 

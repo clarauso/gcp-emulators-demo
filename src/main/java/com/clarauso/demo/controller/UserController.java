@@ -1,7 +1,7 @@
 package com.clarauso.demo.controller;
 
 import com.clarauso.demo.model.exceptions.NotFoundException;
-import com.clarauso.demo.firestore.UserService;
+import com.clarauso.demo.service.UserService;
 import com.clarauso.demo.model.business.User;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;

@@ -1,9 +1,12 @@
-package com.clarauso.demo.storage;
+package com.clarauso.demo.service;
 
 import com.clarauso.demo.model.business.StorageObject;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.clarauso.demo.storage.StorageReader;
+import com.clarauso.demo.storage.StorageWriter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
