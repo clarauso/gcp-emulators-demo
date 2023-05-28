@@ -10,6 +10,12 @@ spring:
       project-id: local-project
       pubsub:
         emulator-host: localhost:8085
+      firestore:
+        emulator:
+          enabled: true
+        host-port: localhost:9080
+        project-id: local-project
+
 
 # custom properties
 config:
