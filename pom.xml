@@ -15,8 +15,8 @@
 	<description>Demo project for testing with GCP emulators</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud-gcp.version>4.1.2</spring-cloud-gcp.version>
-		<spring-cloud.version>2022.0.1</spring-cloud.version>
+		<spring-cloud-gcp.version>4.3.1</spring-cloud-gcp.version>
+		<spring-cloud.version>2022.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<!-- spring dependencies -->
