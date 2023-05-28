@@ -1,12 +1,15 @@
 package com.clarauso.demo.controller;
 
-import com.clarauso.demo.dto.StorageObject;
-import com.clarauso.demo.model.ResourceReference;
+import com.clarauso.demo.model.business.StorageObject;
+import com.clarauso.demo.model.exceptions.NotFoundException;
+import com.clarauso.demo.model.dto.ResourceReference;
 import com.clarauso.demo.storage.StorageService;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,11 +31,8 @@ public class ResourceController {
   @GetMapping("/{filename}")
   public void get(@PathVariable String filename, HttpServletResponse response) {
 
-    final StorageObject object = storageService.rawRead(filename);
-    if (object == null) {
-      response.setStatus(HttpStatus.NOT_FOUND.value());
-      return;
-    }
+    final StorageObject object =
+        Optional.ofNullable(storageService.rawRead(filename)).orElseThrow(NotFoundException::new);
 
     writeToResponse(object.content(), response);
   }

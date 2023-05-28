@@ -1,6 +1,6 @@
 package com.clarauso.demo.storage;
 
-import com.clarauso.demo.dto.StorageObject;
+import com.clarauso.demo.model.business.StorageObject;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;

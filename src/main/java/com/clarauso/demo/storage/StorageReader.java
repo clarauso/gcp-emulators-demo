@@ -1,6 +1,6 @@
 package com.clarauso.demo.storage;
 
-import com.clarauso.demo.dto.StorageObject;
+import com.clarauso.demo.model.business.StorageObject;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Storage;
 import java.util.Optional;
