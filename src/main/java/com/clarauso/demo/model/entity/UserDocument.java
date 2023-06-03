@@ -3,7 +3,7 @@ package com.clarauso.demo.model.entity;
 import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.spring.data.firestore.Document;
 
-@Document(collectionName = "user")
+@Document(collectionName = "users")
 public class UserDocument {
 
   @DocumentId private String id;
