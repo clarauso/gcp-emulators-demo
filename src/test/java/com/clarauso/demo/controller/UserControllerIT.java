@@ -30,7 +30,7 @@ public class UserControllerIT {
   }
 
   @Test
-  public void postUser_validData_returnsCreated() throws Exception {
+  public void postUser_validData_returnsCreatedStatus() throws Exception {
 
     final var requestBody = """
 {"name": "John","surname": "Doe"}""";
@@ -42,7 +42,7 @@ public class UserControllerIT {
   }
 
   @Test
-  public void getUser_userNotFound_returnsNotFound() throws Exception {
+  public void getUser_userNotFound_returnsNotFoundStatus() throws Exception {
 
     mockMvc
         .perform(get(GET_PATH, "not-found-123").contentType(APPLICATION_JSON_VALUE))
