@@ -24,8 +24,6 @@ public class UserControllerIT {
 
   static final String GET_PATH = "/users/{user-id}";
 
-  String userId;
-
   @BeforeAll
   public void init() {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
