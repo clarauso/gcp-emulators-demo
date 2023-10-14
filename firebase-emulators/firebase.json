@@ -1,0 +1,31 @@
+{
+  "emulators": {
+    "firestore": {
+      "port": 9080,
+      "host": "0.0.0.0"
+    },
+    "pubsub": {
+      "port": 8085,
+      "host": "0.0.0.0"
+    },
+    "storage": {
+      "port": 9199,
+      "host": "0.0.0.0"
+    },
+    "hub": {
+      "host": "0.0.0.0",
+      "port": 4400
+    },
+    "logging": {
+      "host": "0.0.0.0",
+      "port": 4500
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

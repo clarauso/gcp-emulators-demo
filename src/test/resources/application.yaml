@@ -1,0 +1,30 @@
+# server properties
+server:
+  servlet:
+    context-path: /demo
+
+# spring properties
+spring:
+  profiles:
+    active: integration-test
+  main:
+    lazy-initialization: true
+  cloud:
+    gcp:
+      project-id: local-project
+      pubsub:
+        emulator-host: localhost:8085
+      firestore:
+        emulator:
+          enabled: true
+        host-port: localhost:9080
+        project-id: local-project
+
+
+# custom properties
+config:
+  pubsub:
+    test-subscription: test-sub
+  storage:
+    emulator-host: localhost:9199 # gcp starter does not have this property
+    default-bucket: local-project.appspot.com
