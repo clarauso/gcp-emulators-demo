@@ -1,5 +1,7 @@
 package com.clarauso.demo.storage;
 
+import com.google.auth.oauth2.AccessToken;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,8 +20,12 @@ public class Config {
 
   @Bean
   public Storage storage() {
+    // empty credentials to avoid authentication
+    final var credentials = GoogleCredentials.create(AccessToken.newBuilder().build());
+
     return StorageOptions.newBuilder()
         .setHost(EMULATOR_PROTOCOL + emulatorHost)
+        .setCredentials(credentials)
         .build()
         .getService();
   }

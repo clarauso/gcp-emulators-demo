@@ -3,6 +3,8 @@ package com.clarauso.demo.utils;
 import com.clarauso.demo.model.exceptions.InvalidInputException;
 import com.clarauso.demo.model.exceptions.NotFoundException;
 import com.clarauso.demo.model.dto.ErrorModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,8 +15,11 @@ import static com.clarauso.demo.model.dto.ErrorModel.*;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
+  private static final Logger log = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ErrorModel> handleException(Exception ex) {
+    log.error("Handling exception", ex);
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
         .body(new ErrorModel(ErrorCode.GEN_ERR, "An error occurred"));
   }
